@@ -2,8 +2,8 @@
 * Creation & Computation - Digital Futures, OCAD University
  * Roxanne Baril-Bédard
 
-Uses of two complementary yi Ching APIs activated with data from 
-a laser cutted box with two photocels
+Uses of two complementary yi Ching APIs activated with input either from 
+a laser cutted box with two photocels or at mouse clicked
 
 */
 
@@ -28,7 +28,9 @@ var hexs;
 var hexa = false;
 var renewed = true;
 
-var titlePosi=0 , textPosi=0;
+var titlePosi=0 , textPosi=0, textBox = 0;
+
+var rateWidth = 0;
 
 function preload() {
   img1 = loadImage("assets/palmistry-web-bg0.png");
@@ -48,6 +50,10 @@ image(img1, 0, 0,windowWidth,windowHeight);
 
 loadJSON(sendURL1,whenJsonLoaded1);
 loadJSON(sendURL2,whenJsonLoaded2);
+
+//console.log(windowWidth + ' wide ' + windowHeight + ' large');
+//1680 wide 1050 large
+rateWidth = windowWidth / 1680;
 
 
 /***********************************************************************************************
@@ -153,17 +159,18 @@ function getHexagram()
   fill(255);
   noStroke();
   textAlign(CENTER);
-  textSize(120);
+  textSize(rateWidth*120);
 
   titlePosi = (0.205*windowHeight);
   textPosi = (0.43*windowHeight);
 
   text(hexSymbol + " " + (rng+1),width/2,titlePosi);
 
-  textSize(32);
+  textSize(rateWidth*32);
   text(hexTitle,(width/2), (textPosi));
 
-  textSize(24);
-  text(hexDescript + " " + hexJudgement,(width/2-188), (textPosi+20),376,600);
+  textBox = 376
+  textSize(rateWidth*24);
+  text(hexDescript + " " + hexJudgement,(width/2-rateWidth*textBox/2), (textPosi+20),rateWidth*textBox,600);
 }
 
